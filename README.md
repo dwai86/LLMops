@@ -275,10 +275,10 @@ The tracking URI configured in the notebook is:
 mlflow.set_tracking_uri("sqlite:///../mlflow.db")
 ```
 
-To launch the MLflow UI, execute the following command from the `notebooks` directory:
+To launch the MLflow UI, execute the following command from the `root` directory:
 
 ```powershell
-mlflow ui --backend-store-uri "sqlite:///C:/dwai_github/LLMops/mlflow.db" --host 127.0.0.1 --port 5000
+mlflow ui --backend-store-uri "sqlite:///mlflow.db" --host 127.0.0.1 --port 5000
 ```
 
 Open the following URL in a browser:
