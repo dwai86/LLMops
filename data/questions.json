@@ -1,0 +1,22 @@
+[
+  {
+    "id": "Q1",
+    "question": "What is machine learning?"
+  },
+  {
+    "id": "Q2",
+    "question": "Explain the difference between supervised and unsupervised learning."
+  },
+  {
+    "id": "Q3",
+    "question": "What is overfitting in machine learning and how can it be prevented?"
+  },
+  {
+    "id": "Q4",
+    "question": "Explain how a neural network works."
+  },
+  {
+    "id": "Q5",
+    "question": "What is the difference between machine learning and deep learning?"
+  }
+]

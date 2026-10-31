@@ -1,0 +1,142 @@
+response,latency,start_time,end_time,question,prompt_version,model_name,input_tokens,output_tokens,total_tokens,response_status,question_id,input_cost_usd,output_cost_usd,total_cost_usd
+"**Machine learning** is a branch of artificial intelligence that teaches computers to learn from data instead of being explicitly programmed for every task.  
+
+- **Core idea:** The computer is given many examples (data) and a goal (e.g., classify emails as spam or not spam).  
+- **Learning process:** It builds a mathematical model that captures patterns in the data.  
+- **Prediction or decision:** Once trained, the model can apply what it learned to new, unseen data to make predictions, classify, or take actions.  
+
+In short, machine learning lets computers improve their performance on a task by learning from experience rather than following hard‑coded rules.",0.5835720000322908,2026-10-31T07:00:35.526450+00:00,2026-10-31T07:00:36.110043+00:00,What is machine learning?,v1,openai/gpt-oss-20b,89,165,254,success,Q1,6.675e-06,4.95e-05,5.6175e-05
+"**Supervised vs. Unsupervised Learning**
+
+| Feature | Supervised Learning | Unsupervised Learning |
+|---------|---------------------|-----------------------|
+| **Data** | Each training example has a *label* (target value). | Training data contains only input features; no labels. |
+| **Goal** | Learn a mapping from inputs to outputs so you can *predict* the label for new data. | Discover hidden structure or patterns in the data (e.g., group similar items together). |
+| **Typical Tasks** | Classification (e.g., spam vs. not‑spam), regression (e.g., house price prediction). | Clustering (e.g., customer segmentation), dimensionality reduction (e.g., PCA), anomaly detection. |
+| **Evaluation** | Compare predictions to known labels using metrics like accuracy, RMSE, F1‑score. | Evaluate based on internal criteria (silhouette score, cluster cohesion) or downstream usefulness; no “ground truth” labels. |
+| **Examples** | *Predicting whether a tumor is malignant or benign* using labeled medical images. | *Grouping customers into segments* based on purchasing behavior without pre‑defined categories. |
+
+### Why the Difference Matters
+
+- **Supervised** models learn from *explicit feedback* (the labels). They’re great when you have a clear target variable and enough labeled data.
+- **Unsupervised** models are useful when you want to *explore* data, find hidden patterns, or reduce dimensionality, especially when labeling is expensive or impossible.
+
+In practice, many real‑world problems use a mix: start with unsupervised techniques to understand the data, then apply supervised learning once you have a clear objective.",0.94444360001944,2026-10-31T07:00:36.110695+00:00,2026-10-31T07:00:37.055150+00:00,Explain the difference between supervised and unsupervised learning.,v1,openai/gpt-oss-20b,95,401,496,success,Q2,7.125e-06,0.0001203,0.000127425
+"**Overfitting**  
+In machine learning, a model is said to *overfit* when it learns the training data too well—capturing not only the underlying pattern but also the noise, quirks, and random fluctuations. As a result, the model performs excellently on the training set but poorly on new, unseen data.
+
+---
+
+### Why does it happen?
+
+| Factor | How it contributes |
+|--------|--------------------|
+| **Too many parameters** | A very complex model (deep network, high‑degree polynomial) can fit almost any pattern. |
+| **Limited data** | With few examples, the model can “memorize” them instead of learning general rules. |
+| **Noisy data** | Random errors or outliers become part of the learned pattern. |
+| **Long training** | Continuing training after the model has learned the true signal can cause it to chase noise. |
+
+---
+
+### How to detect overfitting
+
+1. **Training vs. validation loss**  
+   - If training loss keeps decreasing while validation loss starts increasing, overfitting is likely.
+2. **Learning curves**  
+   - Plot accuracy/loss over epochs for both sets.
+3. **Cross‑validation**  
+   - High variance across folds indicates overfitting.
+
+---
+
+### Prevention / Mitigation Techniques
+
+| Technique | What it does | Typical use case |
+|-----------|--------------|------------------|
+| **Regularization** (L1, L2) | Adds a penalty for large weights, encouraging simpler models. | Neural nets, linear models |
+| **Dropout** | Randomly drops units during training, forcing the network to learn redundant representations. | Deep neural nets |
+| **Early stopping** | Stop training when validation performance stops improving. | Any iterative training |
+| **Cross‑validation** | Uses multiple train/validation splits to ensure stability. | Small datasets |
+| **Data augmentation** | Generates synthetic variations of training data (rotations, flips, noise). | Image, audio, text |
+| **Simplify the model** | Reduce depth, width, or feature set. | When data is scarce |
+| **Increase training data** | More examples help the model learn the true signal. | Whenever possible |
+| **Feature selection / dimensionality reduction** | Remove irrelevant or noisy features. | High‑dimensional data |
+| **Ensemble methods** (bagging, boosting) | Combine multiple models to average out overfitting tendencies. | Random Forests, Gradient Boosting |
+| **Batch normalization** | Stabilizes learning and can act as a mild regularizer. | Deep nets |
+
+---
+
+### Quick Checklist
+
+1. **Start simple** – Use a baseline model before adding complexity.  
+2. **Monitor validation metrics** – Don’t look only at training performance.  
+3. **Apply regularization early** – L2 weight decay, dropout, etc.  
+4. **Use early stopping** – Save the best checkpoint.  
+5. **Validate with cross‑validation** – Especially if data is limited.  
+6. **Augment or gather more data** – The best cure is more representative data.  
+
+---
+
+**Bottom line:**  
+Overfitting is the model’s tendency to “memorize” training data instead of learning general patterns. It can be prevented by keeping the model simple, penalizing complexity, monitoring validation performance, and ensuring the training data is representative and sufficiently large.",1.3030018999706954,2026-10-31T07:00:37.056096+00:00,2026-10-31T07:00:38.359108+00:00,What is overfitting in machine learning and how can it be prevented?,v1,openai/gpt-oss-20b,99,787,886,success,Q3,7.424999999999999e-06,0.0002361,0.000243525
+"**How a Neural Network Works – A Clear, Step‑by‑Step Overview**
+
+| Step | What Happens | Why It Matters |
+|------|--------------|----------------|
+| **1. Build the Architecture** | • **Input layer**: receives raw data (e.g., pixel values, sensor readings).<br>• **Hidden layers**: one or more layers of artificial neurons.<br>• **Output layer**: produces the final prediction (e.g., class label, regression value). | The depth (number of hidden layers) and width (neurons per layer) determine the network’s capacity to learn complex patterns. |
+| **2. Initialize Weights & Biases** | Each connection has a weight; each neuron has a bias. They’re usually set to small random numbers. | Random starting points allow the network to explore many possible solutions during training. |
+| **3. Forward Propagation** | 1. **Weighted sum**: For each neuron, compute \(z = \sum_i w_i x_i + b\).<br>2. **Activation**: Apply a non‑linear function \(a = f(z)\) (e.g., ReLU, sigmoid, tanh).<br>3. **Repeat**: Pass activations from one layer to the next until the output layer. | Forward propagation turns raw inputs into a prediction. Non‑linear activations let the network model complex relationships. |
+| **4. Compute Loss** | Compare the network’s output \( \hat{y} \) to the true target \( y \) using a loss function (e.g., cross‑entropy for classification, mean‑squared error for regression). | The loss quantifies how far the prediction is from the truth; the goal is to minimize it. |
+| **5. Backward Propagation (Backprop)** | 1. **Compute gradients**: Use the chain rule to find how each weight/bias affects the loss. <br>2. **Update parameters**: Adjust weights/biases in the opposite direction of the gradient (gradient descent). <br>3. **Learning rate**: A small step size controls how big each update is. | Backprop tells the network *which* parameters to tweak to reduce the loss. |
+| **6. Iterate (Epochs)** | Repeat steps 3–5 over many passes through the training data. | Repeated updates gradually improve the network’s performance. |
+| **7. Validate & Test** | After training, evaluate the network on unseen data to check generalization. | Ensures the model hasn’t just memorized the training set. |
+
+### Key Concepts in a Nutshell
+
+| Concept | Quick Definition |
+|---------|------------------|
+| **Neuron** | A computational unit that sums weighted inputs, adds a bias, and applies an activation function. |
+| **Weight** | A learnable parameter that scales an input’s influence. |
+| **Bias** | A learnable offset added to the weighted sum. |
+| **Activation Function** | Introduces non‑linearity (e.g., ReLU: \(f(z)=\max(0,z)\)). |
+| **Loss Function** | Measures prediction error (e.g., cross‑entropy). |
+| **Gradient Descent** | Optimization algorithm that updates parameters to reduce loss. |
+| **Epoch** | One full pass through the entire training dataset. |
+
+### Variants & Extensions
+
+- **Convolutional Neural Networks (CNNs)**: Use convolutional layers to detect local patterns (useful for images, audio).  
+- **Recurrent Neural Networks (RNNs)**: Include cycles to handle sequential data (text, time series).  
+- **Transformer Models**: Use self‑attention to capture long‑range dependencies (state‑of‑the‑art for NLP).  
+
+### Practical Tips
+
+1. **Normalize Inputs**: Scale features to a similar range (e.g., 0–1 or mean 0, std 1).  
+2. **Regularization**: Techniques like dropout or weight decay prevent overfitting.  
+3. **Learning Rate Scheduling**: Reduce the learning rate over time for finer convergence.  
+4. **Batch Size**: Use mini‑batches (e.g., 32, 64) to balance speed and stability.  
+
+---
+
+**Bottom Line:**  
+A neural network learns by repeatedly feeding data forward, measuring error, and adjusting its internal weights backward. Over many iterations, it discovers the mapping from inputs to outputs that best fits the training data, and—if trained well—generalizes to new, unseen examples.",1.4457782001700252,2026-10-31T07:00:38.359671+00:00,2026-10-31T07:00:39.805460+00:00,Explain how a neural network works.,v1,openai/gpt-oss-20b,91,1027,1118,success,Q4,6.825e-06,0.00030809999999999995,0.00031492499999999997
+"**Machine Learning (ML)** and **Deep Learning (DL)** are both branches of artificial intelligence, but they differ in approach, complexity, and typical use‑cases.
+
+| Feature | Machine Learning | Deep Learning |
+|---------|------------------|---------------|
+| **Definition** | Algorithms that learn patterns from data and make predictions or decisions. | A subset of ML that uses artificial neural networks with many layers (“deep” networks). |
+| **Model Structure** | Often shallow models: decision trees, support vector machines, linear regression, k‑nearest neighbors, etc. | Deep neural networks (DNNs) with dozens or hundreds of layers (CNNs, RNNs, Transformers). |
+| **Feature Engineering** | Requires manual extraction and selection of features by domain experts. | Learns hierarchical features automatically from raw data (images, text, audio). |
+| **Data Requirements** | Works well with moderate amounts of labeled data. | Typically needs large volumes of labeled data to train effectively. |
+| **Computational Resources** | Relatively light; can run on CPUs or modest GPUs. | Demands powerful GPUs/TPUs and longer training times. |
+| **Interpretability** | Often more interpretable (e.g., decision trees, linear models). | Generally considered a “black box”; harder to explain predictions. |
+| **Typical Applications** | Spam filtering, recommendation systems, fraud detection, simple classification/regression tasks. | Image recognition, speech recognition, natural language processing, autonomous driving, generative art. |
+| **Training Time** | Faster to train and tune. | Longer training cycles; hyperparameter tuning is more complex. |
+
+### Key Take‑aways
+
+1. **Deep learning is a specialized form of machine learning** that uses deep neural networks to automatically learn complex patterns.
+2. **ML can work with simpler models and less data**, making it suitable for many business problems where interpretability and speed matter.
+3. **DL excels when you have massive datasets and need to capture intricate, hierarchical relationships** (e.g., recognizing objects in photos or translating languages).
+
+In practice, you might start with a traditional ML model to get a baseline. If performance is insufficient and you have enough data and compute power, you can try a deep learning approach.",0.9354002000764012,2026-10-31T07:00:39.806790+00:00,2026-10-31T07:00:40.742203+00:00,What is the difference between machine learning and deep learning?,v1,openai/gpt-oss-20b,95,532,627,success,Q5,7.125e-06,0.0001596,0.000166725
